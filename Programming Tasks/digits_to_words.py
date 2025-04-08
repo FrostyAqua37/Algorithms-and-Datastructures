@@ -1,27 +1,33 @@
 def digit_to_word(number):
-    str(number)
-    for i in number:
-        match i:
-            case 0:
-                return "Zero"
-            case 1:
-                return "One"
-            case 2:
-                return "Two"
-            case 3: 
-                return "Three"
-            case 4:
-                return "Four"
-            case 5:
-                return "Five"
-            case 6:
-                return "Six"
-            case 7: 
-                return "Seven"
-            case 8:
-                return "Eight"
-            case 9: 
-                return "Nine"
+    match number:
+        case "0":
+            print("Zero")
+        case "1":
+            print("One")
+        case "2":
+            print("Two")
+        case "3": 
+            print("Three")
+        case "4":
+            print("Four")
+        case "5":
+            print("Five")
+        case "6":
+            print("Six")
+        case "7": 
+            print("Seven")
+        case "8":
+            print("Eight")
+        case "9": 
+            print("Nine")
 
-number = 1234
-print(digit_to_word(number))
+def print_word(n):
+    i = 0
+    length = len(n)
+
+    while i < length:
+        digit_to_word(N[i])
+        i += 1
+
+N = "1234"
+print_word(N)
