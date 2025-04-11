@@ -16,7 +16,7 @@ class Queue(object):
             self.__rear = 0
         self.__que[self.__rear] = item
         self.__nItems += 1
-        return f"Item successfully inserted at index {self.__rear - 1}"
+        return f"Item {self.__que[self.__rear]} successfully inserted at index {self.__rear}"
         
 
     def remove(self):
@@ -29,7 +29,7 @@ class Queue(object):
         if self.__front == self.__maxSize:
             self.__front = 0
         self.__nItems -= 1
-        return f"Item {front} at index {self.__front + 1} have been removed."
+        return f"Item {front} at index {self.__front} have been removed."
 
     def peek(self):
         return None if self.isEmpty() else self.__que[self.__front]
@@ -51,9 +51,21 @@ class Queue(object):
                 output += ", "
             j = i + self.__front
             if j >= self.__maxSize:
-                j-= self.__maxSize
+                j -= self.__maxSize
             output += str(self.__que[j])
         
         output += "]"
         return output
 
+que = Queue(10)
+
+for i in range(10):
+    i += 1
+    que.insert(i)
+
+print(que.__str__())
+print(f"Size of Queue: {que.__len__()}")
+print(f"First element: {que.peek()}")
+
+print(f"Is the Queue Full? \n {que.isFull()}")
+print(f"Is the Queue Empty? \n {que.isEmpty()}")
