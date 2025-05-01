@@ -115,7 +115,7 @@ class LinkedList(object):
         return first.getData()
     
     def delete(self, goal, key=identity):
-        if self.isEmpty(self):
+        if self.isEmpty():
             raise Exception("No nodes in the Linked List currently.")
         
         previous = self

@@ -16,25 +16,27 @@ class Queue(object):
             self.__rear = 0
         self.__queue[self.__rear] = data
         self.__nItems += 1
-        print(f"Item {data} have been inserted at index {self.__rear}.")
-
-
+        print(f"Item {data} have been inserted at index position {self.__rear}.")
+        return 
+    
     def dequeue(self):
         if self.isEmpty():
             raise Exception("Queue is Empty!")
-        data = self.__queue[self.__front]
-        index = self.__front    
+        item = self.__queue[self.__front]
+        index = self.__front
+
         self.__queue[self.__front] = None
         self.__front += 1
-
         if self.__front == self.__maxSize:
             self.__front = 0
         self.__nItems -= 1
-        print(f"Item {data} have been removed from index {index}.")
+
+        print(f"Item {item} have been removed from index position {index}.")
+        return
 
     def peek(self):
         return None if self.isEmpty() else self.__queue[self.__front]
-
+    
     def __len__(self):
         return self.__nItems
 
@@ -42,16 +44,27 @@ class Queue(object):
         output = "["
         for i in range(self.__nItems):
             if len(output) > 1:
-                output += " > "
+                output += ", "
             j = i + self.__front
             if j >= self.__maxSize:
                 j -= self.__maxSize
-
             output += str(self.__queue[j])
-        return output + "]"
+        print(output + "]")
+        return 
 
     def isFull(self):
         return self.__nItems == self.__maxSize
-
+    
     def isEmpty(self):
         return self.__nItems == 0
+    
+queue = Queue(20)
+
+for i in range(20):
+    i += 1
+    queue.enqueue(i)
+
+queue.__str__()
+print(queue.__len__())
+queue.dequeue()
+print(queue.peek())
