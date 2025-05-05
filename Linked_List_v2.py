@@ -1,5 +1,6 @@
 #Methods for Node Class: __init__(), getNext(), setNext(), getData(), setData(), __str__(), isLast()
-#Methods for Linked List Class: __init__(), getFirst(), setFirst(), getNext(), setNext(), first(), isEmpty(), traverse(), __len__(), __str__(), insert(), find(), search(), insertAfter(), deleteFirst(), delete()
+#Methods for Linked List Class: __init__(), getFirst(), setFirst(), getNext(), setNext(), first(), isEmpty(), 
+#traverse(), __len__(), __str__(), insert(), find(), search(), insertAfter(), deleteFirst(), delete()
 
 class Node(object):
     def __init__(self, data, next=None):
@@ -25,7 +26,7 @@ class Node(object):
         return str(self.getData())
     
     def isLast(self):
-        return self.__next is None
+        return self.getNext() is None
 
 class LinkedList(object):
     def __init__(self):

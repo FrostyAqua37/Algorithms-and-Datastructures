@@ -7,7 +7,6 @@ class BinarySearch(object):
         low = 0
         high = self.__nItems - 1
         steps = 0
-        list = ""
     
         while low <= high:
             middle = (low + high) // 2
