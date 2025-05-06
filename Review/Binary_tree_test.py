@@ -1,19 +1,19 @@
 class Node(object):
     def __init__(self, data):
-        self.data = data
+        self.__data = data
         self.left = None
         self.right = None
 
 def height(node):
     if node is None:
         return 0
-        
+    
     return 1 + max(height(node.left), height(node.right))
-
+    
 def isBalanced(root):
     if root is None:
         return True
-        
+
     left_height = height(root.left)
     right_height = height(root.right)
 
@@ -24,15 +24,14 @@ def isBalanced(root):
 
 
 if __name__ == "__main__":
-    root = Node(1)
-    root.left = Node(2)
-    root.right = Node(3)
-    root.left.left = Node(4)
-    root.left.right = Node(5)
-    root.left.left.left = Node(8)
+    root = Node(0)
+    root.left = Node(1)
+    root.right = Node(2)
+    root.left.right = Node(4)
+    root.left.left = Node(3)
+    root.left.left.left = Node(5)
 
-    print(f"Balanced Tree:", "True" if isBalanced(root) else "False")
-
+    print("Balanced Tree:", "True" if isBalanced(root) else "False")
 
         
 
