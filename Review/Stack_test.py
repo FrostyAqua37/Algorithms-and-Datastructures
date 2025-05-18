@@ -7,36 +7,35 @@ class Stack(object):
         self.__top = -1
         self.__nItems = 0
 
-    def push(self, data):
+    def push(self, item):
         if self.isFull():
-            raise Exception("Stack is Full.")
+            raise Exception("Stack is full.")
         
         self.__top += 1
-        self.__stack[self.__top] = data
+        self.__stack[self.__top] = item
         self.__nItems += 1
-        print(f"Data item {data} have been successfully inserted at index position {self.__top}")
+        print(f"Item {item} have been successfully inserted in the Stack.")
         return 
     
     def pop(self):
         if self.isEmpty():
-            raise Exception("Stack is Empty.")
+            raise Exception("Stack is empty.")
         
         item = self.__stack[self.__top]
-        index = self.__top
         self.__stack[self.__top] = None
         self.__top -= 1
         self.__nItems -= 1
-        print(f"Data Item ({item}) have been successfully remove from index postion {index}.")
+        print(f"Item {item} have been successfully removed from the Stack.")
         return 
-
+    
     def peek(self):
-        return "Stack is Empty" if self.isEmpty() else self.__stack[self.__top]
-
+        return None if self.isEmpty() else self.__stack[self.__top]
+    
     def isEmpty(self):
         return self.__nItems == 0
-
+    
     def isFull(self):
-        return self.__nItems == self.__maxSize 
+        return self.__nItems == self.__maxSize
     
     def __len__(self):
         return self.__nItems
@@ -50,9 +49,14 @@ class Stack(object):
         return output + "]"
     
 
-#stack = Stack(10)
-#
-#for i in range(10):
-#    stack.push(i)
-#
-#print(stack.__str__())
+stack = Stack(10)
+
+for i in range(10):
+    i += 1
+    stack.push(i)
+
+print(stack.__str__())
+print("Top Item:", stack.peek())
+print("Length of Stack:", stack.__len__())
+stack.pop()
+print("Top Item:", stack.peek())

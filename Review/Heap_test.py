@@ -1,5 +1,6 @@
 #Methods for Heap: parent(), leftChild(), rightChild(), heapify(), heapSort(), insertMinHeap()
 
+
 def parent(i):
     return (i - 1) // 2
 
@@ -41,11 +42,7 @@ def min_heap(minheap, data):
         minHeap[i], minHeap[parent(i)] = minHeap[parent(i)], minHeap[i] 
         i = parent(i)
 
-def printList(list):
-    print(list)
 
-def printHeap(minHeap):
-    print(minHeap)
     
 if __name__ == "__main__":
     values = [10, 0, 30, 40, 100, 50, 70, 90, 80, 20, 60]
@@ -54,7 +51,7 @@ if __name__ == "__main__":
     
     for value in values:
         min_heap(minHeap, value)
-    print(minHeap)
+    print("Min Heap:", minHeap)
 
     heapSort(values, length)
-    printList(values)
+    print("List in Descending Order:", values)

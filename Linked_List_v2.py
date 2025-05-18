@@ -14,8 +14,8 @@ class Node(object):
         if node is None or isinstance(node, Node):
             self.__next = node
         else:
-            raise Exception("Node needs to be 'None' or of class 'Node'.")
-    
+            raise Exception("Node needs to be 'None' or of type 'Node'.")
+        
     def getData(self):
         return self.__data
     
@@ -23,7 +23,7 @@ class Node(object):
         self.__data = data
 
     def __str__(self):
-        return str(self.getData())
+        return str(self.getData)
     
     def isLast(self):
         return self.getNext() is None
@@ -31,7 +31,7 @@ class Node(object):
 class LinkedList(object):
     def __init__(self):
         self.__first = None
-
+    
     def getFirst(self):
         return self.__first
     
@@ -39,60 +39,58 @@ class LinkedList(object):
         if node is None or isinstance(node, Node):
             self.__first = node
         else:
-            raise Exception("Node needs to be of type class 'Node'.")
-        
+            raise Exception("Node needs to be 'None' or of type 'Node'.")
+
     def getNext(self):
-        return self.getFirst()
-    
+        return self.__first
+
     def setNext(self, node):
         return self.setFirst(node)
     
     def first(self):
         if self.isEmpty():
-            raise Exception("Linked List is currently Empty.")
+            raise Exception("Linked List is Empty.")
         return self.getFirst().getData()
-
+    
     def isEmpty(self):
-        return self.__first is None
-
+        return self.getFirst() is None
+    
     def traverse(self):
-        output = ""
         node = self.getFirst()
+        output = ""
+
         while node is not None:
-            output += "[ "
-            output += str(node.getData())
-            output += " ]"
+            output += f"[{str(node.getData())}]"
             if node.getNext() is None:
                 break
             output += " > "
             node = node.getNext()
         print(output)
         return 
-    
-    def __str__(self):
-        output = ""
-        node = self.getFirst()
-        while node is not None:
-            output += "[ "
-            output += str(node)
-            output += " ]"
-            if node.getNext() is None:
-                break
-            output += " > "
-            node = node.getNext()
-        return output 
 
     def __len__(self):
         length = 0
         node = self.getFirst()
+
         while node is not None:
             length += 1
             node = node.getNext()
         return length
- 
+
+    def __str__(self):
+        node = self.getFirst()
+        output = "[" 
+
+        while node is not None:
+            if len(output) > 1:
+                output += ", "
+            output += str(node.getData())
+            node = node.getNext()
+        return output + "]"
+    
     def insert(self, data):
-        node = Node(data, self.getNext())
-        self.setFirst(node)
+        first = Node(data, self.getFirst())
+        self.setFirst(first)
 
     def find(self, goal):
         node = self.getFirst()
@@ -100,48 +98,52 @@ class LinkedList(object):
             if node.getData() == goal:
                 return node
             node = node.getNext()
+        raise Exception("No Matching data value found.")
 
     def search(self, goal):
         node = self.find(goal)
         if node is not None:
-           return node.getData()
-
-    def insertAfter(self, data, goal):
-        node = self.find(goal)
+            return node.getData()
+    
+    def insertAfter(self, position, data):
+        node = self.find(position)
         if node is None:
             return False
+        
         new_node = Node(data, node.getNext())
         node.setNext(new_node)
         return True
     
     def deleteFirst(self):
         if self.isEmpty():
-            raise Exception("Linked List is currently Empty.")
+            raise Exception("Linked List is Empty.")
         
-        node = self.getFirst()
-        self.setFirst(node.getNext())
-        print("First Node have been removed")
+        first = self.getFirst()
+        self.setFirst(first.getNext())
+        first.setNext(None)
+        print("First Node have been successfully deleted.")
         return 
-
-    def delete(self, goal):
+    
+    def delete(self, position):
         if self.isEmpty():
-            raise Exception("Linked List is currently Empty!")
+            raise Exception("Linked List is Empty.")
 
         previous = self
         while previous.getNext() is not None:
             node = previous.getNext()
-            if goal == node.getData():
+            if position == node.getData():
                 previous.setNext(node.getNext())
-                print(f"Element {node.getData()} have been successfully removed.")
+                node.setNext(None)
                 return 
             previous = node
-        raise Exception("No Matching element found.")
+        raise Exception("No matching data value found.")
     
-llist = LinkedList()
-llist.insert(1)
+linked_list = LinkedList()
+number = 100
 
-for i in range(20):
-    i += 1
-    llist.insertAfter(i, i - 1)
+for i in range(11):
+    linked_list.insert(number)
+    number -= 10
 
-llist.traverse()
+print("Linked List:")
+linked_list.traverse()
