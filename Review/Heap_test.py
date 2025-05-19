@@ -37,7 +37,6 @@ def printList(list):
 if __name__ == "__main__":
     values = [100, 80, 0, 10, 30, 60, 70, 20, 90, 50, 40]
     length = len(values)
-    value = values[0]
 
     for i in range(int(length / 2) - 1, -1, -1):
         heapify(values, length, i)
