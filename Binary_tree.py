@@ -1,3 +1,4 @@
+#Methods: __init__(), height() and isBalanced()
 class Node(object):
     def __init__(self, data):
         self.data = data

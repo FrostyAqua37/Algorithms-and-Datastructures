@@ -1,31 +1,31 @@
 def binarySearch(list, goal):
-    length = len(list)
     low = 0
-    high = length - 1
+    high = len(list) - 1
 
     while low <= high:
         middle = (low + high) // 2
 
         if list[middle] == goal:
-            return (f"Data value {goal} found at Index Position {middle}.") 
+            print(f"Item {goal} found at index position {middle}.")
+            return 
         elif list[middle] < goal:
             low = middle + 1
         else:
             high = middle - 1
-    return "Item not found."
-        
-numbers = []
-for i in range(20):
-    i += 1
-    numbers.append(i)
+    raise Exception("No matching value found.")
 
-print(f"List: {numbers}")
-print(f"Result: {binarySearch(numbers, 201)}")
+values = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+            
+
+binarySearch(values, 10)
 
 """
-The Binary Search Algorithm have a time complexity of O(log n), since the range of element being search is divided in half
-with each iteration done. For instance the code starts with the range 1 to 20, then divides the searchable range to 10 t0 20,
-then 16 to 20, then 19 to 20, then finally finds the element at the last index position 19. 
-"""
+The Binary Search Algorithm have an time complexity of O(log n), since at each iteration it 
+divides the range of element to be searched in half, until it finds the value or runs out of 
+elements to divide. For instance, in the code above we want to search for the value 10. 
+On the 1st iteration, it divides the range to be from the original range down to 0 to 40, 
+since the middle element 50 is greater than 10. 
 
-        
+On the 2nd iteration, it shortens the range down to 0 and 20.
+On the 3rd iteration, it find the element we are searching for since it is the middle element
+"""
